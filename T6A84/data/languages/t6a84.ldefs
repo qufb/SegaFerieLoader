@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language_definitions>
+  <language processor="t6a84"
+            endian="little"
+            size="16"
+            variant="default"
+            version="1.0"
+            slafile="t6a84.sla"
+            processorspec="t6a84.pspec"
+            manualindexfile="../manuals/t6a84.idx"
+            id="T6A84:LE:16:default">
+    <description>Toshiba T6A84</description>
+    <compiler name="default" spec="t6a84.cspec" id="default"/>
+    <external_name tool="gnu" name="t6a84"/>
+    <external_name tool="IDA-PRO" name="t6a84"/>
+  </language>
+</language_definitions>
