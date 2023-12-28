@@ -2,9 +2,23 @@
 
 Memory maps and some I/O registers are defined.
 
-This system's CPU is Toshiba T6A84. Although opcode-compatible with Z80, it requires a distinct data address space for RAM accesses. On directory `./T6A84` you can find an adapted Z80 processor module, which needs to be copied to your Ghidra installation under `$GHIDRA_DIR/Ghidra/Processors/T6A84`.
+This system's CPU is Toshiba T6A84. Although opcode-compatible with Z80, it requires a distinct data address space for RAM accesses. Here's an example dissassembly, showcasing the difference between these modules:
 
-Most relevant differences is the inclusion of a new RAM space, which is used on instructions with memory accesses:
+<p align="center">
+  <img alt="Z80 disassembly" src="./1.png" width="45%">
+  <img alt="T6A84 disassembly" src="./2.png" width="45%">
+</p>
+
+Note that stack accesses also use the data address space. It seems that attempting to use a dedicated one will cause some decompilation issues regarding the stack pointer, which is represented as a register address space offset:
+
+<p align="center">
+  <img alt="T6A84 with stack stored in data address space" src="./3.png" width="45%">
+  <img alt="T6A84 with stack stored in another address space" src="./4.png" width="45%">
+</p>
+
+On directory `./T6A84` you can find an adapted Z80 processor module, which needs to be copied to your Ghidra installation under `$GHIDRA_DIR/Ghidra/Processors/T6A84`.
+
+Regarding PCode, most relevant differences are related with the inclusion of a new RAM space, which is used on instructions with memory accesses:
 
 ```diff
 --- Z80/data/languages/z80.cspec        2023-12-09 11:10:40.619694000 +0000
